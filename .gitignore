@@ -29,6 +29,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+.idea
+.env
+package-lock.json
 
 # typescript
 *.tsbuildinfo

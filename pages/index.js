@@ -34,6 +34,45 @@ export default function Home({userToken}) {
     const submit = async event => {
         event.preventDefault();
         setLoading(true);
+        setError(null);
+        console.log(step)
+
+        try {
+            let email = event.target.email.value;
+            let username = event.target.username.value;
+            let password = event.target.password.value;
+            let passwordVerify = event.target.passwordVerify.value;
+
+            if (step === 'login') {
+                if (!email || !password) {
+                    setError('Please enter all fields.');
+                    setLoading(false);
+                } else {
+                    setError('Login API Request here');
+                    setLoading(false);
+                }
+            } else if (step === 'create') {
+                if (!email || !username || !password || !passwordVerify) {
+                    setError('Please enter all fields.');
+                    setLoading(false);
+
+                } else if (!password === passwordVerify) {
+                    setError('Passwords do not match.');
+                    setLoading(false);
+                } else {
+                    setError('Create API Request here');
+                    setLoading(false);
+                }
+            } else {
+                setError('Invalid step.')
+                setLoading(false);
+            }
+        } catch (e) {
+            console.log(e)
+            setError('Unknown error occurred.');
+            setLoading(false);
+        }
+
     };
 
     function createAccount() {
@@ -97,7 +136,7 @@ export default function Home({userToken}) {
                                                 fontSize={{base: 'sm', sm: 'md'}}
                                                 bgGradient="linear(to-r, red.400,pink.400)"
                                                 bgClip="text">
-                                                {(Object.values(error)?.[0]?.Message) || 'Unknown error occurred.'}
+                                                {error}
                                             </Text>
                                         ) : (
                                             <Text

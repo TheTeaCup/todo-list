@@ -52,6 +52,10 @@ export default function Home() {
                 } else {
                     let loginResponse = await login({email, password});
                     console.log(loginResponse)
+                    if(loginResponse.error) {
+                        setError(loginResponse.message);
+                        setLoading(false);
+                    }
                     setLoading(false);
                 }
             } else if (step === 'create') {

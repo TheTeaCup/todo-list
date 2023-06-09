@@ -162,7 +162,7 @@ export default function Home({userToken}) {
                                             placeholder="CoolUsername"
                                             _placeholder={{color: 'gray.500'}}
                                             id={'username'}
-                                            required={true}
+                                            required={step === 'create'}
                                             type={step === 'create' ? 'text' : 'hidden'}
                                         />
                                     </FormControl>
@@ -182,7 +182,7 @@ export default function Home({userToken}) {
                                             placeholder="passwordVerify"
                                             _placeholder={{color: 'gray.500'}}
                                             id={'passwordVerify'}
-                                            required={true}
+                                            required={step === 'create'}
                                             type={'password'}
                                         />
                                     </FormControl>

@@ -52,10 +52,10 @@ export default function Home() {
                 } else {
                     let loginResponse = await login({email, password});
 
-                    if(loginResponse.error) {
+                    if (loginResponse.error) {
                         setError(loginResponse.message);
                         setLoading(false);
-                    } else if(loginResponse.message === 'OK') {
+                    } else if (loginResponse.message === 'OK') {
                         await router.push('/app')
                     } else {
                         setError('Unknown error occurred.');
@@ -72,10 +72,10 @@ export default function Home() {
                     setLoading(false);
                 } else {
                     let createResponse = await register({email, username, password, passwordVerify});
-                    if(createResponse.error) {
+                    if (createResponse.error) {
                         setError(createResponse.message);
                         setLoading(false);
-                    } else if(createResponse.message === 'OK') {
+                    } else if (createResponse.message === 'OK') {
                         await router.push('/app')
                     } else {
                         setError('Unknown error occurred.');

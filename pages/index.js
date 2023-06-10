@@ -51,25 +51,36 @@ export default function Home() {
                     setLoading(false);
                 } else {
                     let loginResponse = await login({email, password});
-                    console.log(loginResponse)
+
                     if(loginResponse.error) {
                         setError(loginResponse.message);
                         setLoading(false);
+                    } else if(loginResponse.message === 'OK') {
+                        await router.push('/app')
+                    } else {
+                        setError('Unknown error occurred.');
+                        setLoading(false);
                     }
-                    setLoading(false);
                 }
             } else if (step === 'create') {
                 if (!email || !username || !password || !passwordVerify) {
                     setError('Please enter all fields.');
                     setLoading(false);
 
-                } else if (!password === passwordVerify) {
+                } else if (password !== passwordVerify) {
                     setError('Passwords do not match.');
                     setLoading(false);
                 } else {
-                    let createResponse = await register({email, username, password});
-                    console.log(createResponse)
-                    setLoading(false);
+                    let createResponse = await register({email, username, password, passwordVerify});
+                    if(createResponse.error) {
+                        setError(createResponse.message);
+                        setLoading(false);
+                    } else if(createResponse.message === 'OK') {
+                        await router.push('/app')
+                    } else {
+                        setError('Unknown error occurred.');
+                        setLoading(false);
+                    }
                 }
             } else {
                 setError('Invalid step.')
@@ -139,20 +150,19 @@ export default function Home() {
                                     </Heading>
 
                                     <center>
-                                        {error ? (
+                                        <Text
+                                            fontSize={{base: 'sm', sm: 'md'}}
+                                            color={TextColor}>
+                                            {text}
+                                        </Text>
+                                        {error ?
                                             <Text
                                                 fontSize={{base: 'sm', sm: 'md'}}
                                                 bgGradient="linear(to-r, red.400,pink.400)"
                                                 bgClip="text">
                                                 {error}
-                                            </Text>
-                                        ) : (
-                                            <Text
-                                                fontSize={{base: 'sm', sm: 'md'}}
-                                                color={TextColor}>
-                                                {text}
-                                            </Text>
-                                        )}
+                                            </Text> : <br/>
+                                        }
                                     </center>
 
                                     <FormControl id="email">

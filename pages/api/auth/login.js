@@ -21,7 +21,27 @@ async function authLogin(req, res) {
             let user = await Redis.get('user-' + encrypted);
             console.log(user)
             if(user) {
-                return res.json({error: true, message: 'Not implemented yet'});
+                user = JSON.parse(user);
+
+                const passwordHash = crypto.pbkdf2Sync(req.body.password, process.env.SITESALT, 10000, 512, 'sha512').toString('hex');
+                if (passwordHash === user.password) {
+                    user.token = crypto.randomBytes(20).toString('hex');
+
+                    let decipher = crypto.createDecipheriv('aes-256-cbc', process.env.SITECRYPTO, process.env.SITEIV);
+                    let decrypted = decipher.update(encrypted, 'base64', 'utf8');
+
+                    Redis.set('user-' + encrypted, JSON.stringify(user));
+                    user.email = decrypted + decipher.final('utf8');
+                    user.encryptedEmail = encrypted;
+                    req.session.user = user;
+                    await req.session.save();
+
+                    // create user session then return a success message
+                    return res.json({error: false, message: "OK"})
+                } else {
+                    return res.json({error: true, message: "Invalid Email or Password"});
+                }
+
             } else {
                 return res.json({error: true, message: 'Invalid Email or Password'});
             }

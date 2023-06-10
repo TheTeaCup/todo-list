@@ -33,6 +33,7 @@ async function authLogin(req, res) {
                     Redis.set('user-' + encrypted, JSON.stringify(user));
                     user.email = decrypted + decipher.final('utf8');
                     user.encryptedEmail = encrypted;
+                    delete user.password;
                     req.session.user = user;
                     await req.session.save();
 

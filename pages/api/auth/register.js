@@ -39,12 +39,12 @@ async function authLogin(req, res) {
                     updated: Date.now(),
                     id: userId,
                     token: crypto.randomBytes(20).toString('hex'),
-
                 }
 
                 Redis.set('user-' + encrypted, JSON.stringify(data));
 
                 data.email = req.body.email;
+                delete user.password;
                 req.session.user = data;
                 await req.session.save();
                 // create user session then return a success message

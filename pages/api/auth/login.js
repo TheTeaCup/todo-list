@@ -20,7 +20,7 @@ async function authLogin(req, res) {
 
             let user = await Redis.get('user-' + encrypted);
             console.log(user)
-            if(user) {
+            if (user) {
                 user = JSON.parse(user);
 
                 const passwordHash = crypto.pbkdf2Sync(req.body.password, process.env.SITESALT, 10000, 512, 'sha512').toString('hex');

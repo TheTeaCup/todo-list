@@ -11,7 +11,7 @@ import {
     useColorModeValue,
     useDisclosure,
 } from '@chakra-ui/react';
-import {FiCompass, FiHome, FiSettings, FiStar, FiTrendingUp,} from 'react-icons/fi';
+import {FiCompass, FiHome, FiSettings, FiStar,} from 'react-icons/fi';
 import MobileNav from "@/components/navbar/mobile";
 
 const LinkItems = [
@@ -22,8 +22,8 @@ const LinkItems = [
 ];
 
 export default function Navbar({
-                                              children,
-                                          }) {
+                                   children,
+                               }) {
     const {isOpen, onOpen, onClose} = useDisclosure();
     return (
         <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>

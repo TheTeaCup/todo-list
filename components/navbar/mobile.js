@@ -1,5 +1,4 @@
 import {
-    Avatar,
     Box,
     Flex,
     HStack,
@@ -13,7 +12,7 @@ import {
     useColorModeValue,
     VStack
 } from "@chakra-ui/react";
-import {FiBell, FiChevronDown, FiMenu} from "react-icons/fi";
+import {FiChevronDown, FiMenu} from "react-icons/fi";
 
 export default function MobileNav({onOpen, ...rest}) {
     return (

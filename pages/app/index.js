@@ -5,7 +5,7 @@ import {withIronSessionSsr} from "iron-session/next";
 import Navbar from "@/components/navbar";
 
 export default function Home({user, dataProps}) {
-   console.log(user)
+    console.log(user)
     return (
         <>
             <Head>

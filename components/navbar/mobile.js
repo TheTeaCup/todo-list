@@ -79,7 +79,7 @@ export default function MobileNav({user, onOpen, ...rest}) {
     );
 };
 
-const MenuItemLink = ({href, icon, children}) => {
+const MenuItemLink = ({href, children}) => {
     return (
         <Link as={NextLink} href={href} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
             <MenuItem>{children}</MenuItem>

@@ -13,6 +13,7 @@ import {
     VStack
 } from "@chakra-ui/react";
 import {FiChevronDown, FiMenu} from "react-icons/fi";
+import ThemeSwitcher from "@/components/themeSwitcher";
 
 export default function MobileNav({onOpen, ...rest}) {
     return (
@@ -43,7 +44,9 @@ export default function MobileNav({onOpen, ...rest}) {
             </Text>
 
             <HStack spacing={{base: '0', md: '6'}}>
+                <ThemeSwitcher css={{
 
+                }}/>
                 <Flex alignItems={'center'}>
                     <Menu>
                         <MenuButton

@@ -13,16 +13,17 @@ import {
 } from '@chakra-ui/react';
 import {FiCompass, FiHome, FiSettings, FiStar,} from 'react-icons/fi';
 import MobileNav from "@/components/navbar/mobile";
+import {useRouter} from "next/router";
+import NextLink from "next/link";
 
 const LinkItems = [
-    {name: 'Home', icon: FiHome},
-    {name: 'Create', icon: FiCompass},
-    {name: 'Favourites', icon: FiStar},
-    {name: 'Settings', icon: FiSettings},
+    {name: 'Home', icon: FiHome, href: '/app'},
+    {name: 'Create', icon: FiCompass, href: '/app/create'},
+    {name: 'Favorites', icon: FiStar, href: '/app/favorites'},
 ];
 
 export default function Navbar({
-    user,
+                                   user,
                                    children,
                                }) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -54,6 +55,7 @@ export default function Navbar({
 }
 
 const SidebarContent = ({onClose, ...rest}) => {
+    const router = useRouter()
     return (
         <Box
             transition="3s ease"
@@ -71,7 +73,7 @@ const SidebarContent = ({onClose, ...rest}) => {
                 <CloseButton display={{base: 'flex', md: 'none'}} onClick={onClose}/>
             </Flex>
             {LinkItems.map((link) => (
-                <NavItem key={link.name} icon={link.icon}>
+                <NavItem href={link.href} key={link.name} icon={link.icon} isActive={router.asPath === link.href}>
                     {link.name}
                 </NavItem>
             ))}
@@ -79,9 +81,13 @@ const SidebarContent = ({onClose, ...rest}) => {
     );
 };
 
-const NavItem = ({icon, children, ...rest}) => {
+const NavItem = ({href, icon, isActive, children, outbound, ...rest}) => {
+    const text = useColorModeValue('dark', 'light')
+    const background = useColorModeValue('gray.200', 'gray.700');
+
     return (
-        <Link href="#" style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+        <Link as={NextLink} href={href} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}
+              target={outbound ? '_blank' : '_self'}>
             <Flex
                 align="center"
                 p="4"
@@ -89,9 +95,12 @@ const NavItem = ({icon, children, ...rest}) => {
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
+                marginBottom={'2'}
+                bg={isActive ? background : undefined}
                 _hover={{
-                    bg: 'cyan.400',
-                    color: 'white',
+                    bg: useColorModeValue('gray.200', 'gray.800'),
+                    color: useColorModeValue('black', 'white'),
+                    cursor: 'pointer',
                 }}
                 {...rest}>
                 {icon && (
@@ -99,7 +108,7 @@ const NavItem = ({icon, children, ...rest}) => {
                         mr="4"
                         fontSize="16"
                         _groupHover={{
-                            color: 'white',
+                            color: text,
                         }}
                         as={icon}
                     />
@@ -109,4 +118,3 @@ const NavItem = ({icon, children, ...rest}) => {
         </Link>
     );
 };
-

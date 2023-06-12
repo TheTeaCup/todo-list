@@ -2,7 +2,7 @@ import {
     Box,
     Flex,
     HStack,
-    IconButton,
+    IconButton, Link,
     Menu,
     MenuButton,
     MenuDivider,
@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import {FiChevronDown, FiMenu} from "react-icons/fi";
 import ThemeSwitcher from "@/components/themeSwitcher";
+import NextLink from "next/link";
 
 export default function MobileNav({user, onOpen, ...rest}) {
     return (
@@ -65,14 +66,22 @@ export default function MobileNav({user, onOpen, ...rest}) {
                             </HStack>
                         </MenuButton>
                         <MenuList>
-                            <MenuItem>Profile</MenuItem>
-                            <MenuItem>Settings</MenuItem>
+                            <MenuItemLink href={'/app'}>Profile</MenuItemLink>
+                            <MenuItemLink href={'/app/settings'}>Settings</MenuItemLink>
                             <MenuDivider/>
-                            <MenuItem>Sign out</MenuItem>
+                            <MenuItemLink href={'/app/logout'}>Sign out</MenuItemLink>
                         </MenuList>
                     </Menu>
                 </Flex>
             </HStack>
         </Flex>
+    );
+};
+
+const MenuItemLink = ({href, icon, children}) => {
+    return (
+        <Link as={NextLink} href={href} style={{textDecoration: 'none'}} _focus={{boxShadow: 'none'}}>
+            <MenuItem>{children}</MenuItem>
+        </Link>
     );
 };

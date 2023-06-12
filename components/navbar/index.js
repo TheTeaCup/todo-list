@@ -22,6 +22,7 @@ const LinkItems = [
 ];
 
 export default function Navbar({
+    user,
                                    children,
                                }) {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -44,7 +45,7 @@ export default function Navbar({
                 </DrawerContent>
             </Drawer>
             {/* mobilenav */}
-            <MobileNav onOpen={onOpen}/>
+            <MobileNav user={user} onOpen={onOpen}/>
             <Box ml={{base: 0, md: 60}} p="4">
                 {children}
             </Box>

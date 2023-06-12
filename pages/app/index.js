@@ -12,7 +12,7 @@ export default function Home({user, dataProps}) {
                 <title>ToDO App</title>
             </Head>
 
-            <Navbar/>
+            <Navbar user={user}/>
 
         </>
     )

@@ -15,7 +15,7 @@ import {
 import {FiChevronDown, FiMenu} from "react-icons/fi";
 import ThemeSwitcher from "@/components/themeSwitcher";
 
-export default function MobileNav({onOpen, ...rest}) {
+export default function MobileNav({user, onOpen, ...rest}) {
     return (
         <Flex
             ml={{base: 0, md: 60}}
@@ -44,9 +44,7 @@ export default function MobileNav({onOpen, ...rest}) {
             </Text>
 
             <HStack spacing={{base: '0', md: '6'}}>
-                <ThemeSwitcher css={{
-
-                }}/>
+                <ThemeSwitcher/>
                 <Flex alignItems={'center'}>
                     <Menu>
                         <MenuButton
@@ -54,22 +52,19 @@ export default function MobileNav({onOpen, ...rest}) {
                             transition="all 0.3s"
                             _focus={{boxShadow: 'none'}}>
                             <HStack>
-
                                 <VStack
                                     display={{base: 'none', md: 'flex'}}
                                     alignItems="flex-start"
                                     spacing="1px"
                                     ml="2">
-                                    <Text fontSize="sm">Username</Text>
+                                    <Text fontSize="sm">{user?.username || 'Loading'}</Text>
                                 </VStack>
                                 <Box display={{base: 'none', md: 'flex'}}>
                                     <FiChevronDown/>
                                 </Box>
                             </HStack>
                         </MenuButton>
-                        <MenuList
-                            bg={useColorModeValue('white', 'gray.900')}
-                            borderColor={useColorModeValue('gray.200', 'gray.700')}>
+                        <MenuList>
                             <MenuItem>Profile</MenuItem>
                             <MenuItem>Settings</MenuItem>
                             <MenuDivider/>

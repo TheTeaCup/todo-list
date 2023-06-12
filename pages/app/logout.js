@@ -22,7 +22,7 @@ export default function App_Logout({user, dataProps}) {
     return (
         <>
             <Head>
-                <title>ToDO App</title>
+                <title>ToDo App</title>
             </Head>
 
             <Navbar user={user}/>

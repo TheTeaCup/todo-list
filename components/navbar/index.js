@@ -11,7 +11,7 @@ import {
     useColorModeValue,
     useDisclosure,
 } from '@chakra-ui/react';
-import {FiCompass, FiHome, FiSettings, FiStar,} from 'react-icons/fi';
+import {FiCompass, FiHome, FiStar,} from 'react-icons/fi';
 import MobileNav from "@/components/navbar/mobile";
 import {useRouter} from "next/router";
 import NextLink from "next/link";

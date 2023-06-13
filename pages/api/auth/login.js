@@ -25,7 +25,6 @@ async function authLogin(req, res) {
 
                 const passwordHash = crypto.pbkdf2Sync(req.body.password, process.env.SITESALT, 10000, 512, 'sha512').toString('hex');
                 if (passwordHash === user.password) {
-                    user.token = crypto.randomBytes(20).toString('hex');
 
                     let decipher = crypto.createDecipheriv('aes-256-cbc', process.env.SITECRYPTO, process.env.SITEIV);
                     let decrypted = decipher.update(encrypted, 'base64', 'utf8');

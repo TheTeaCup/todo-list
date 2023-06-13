@@ -45,11 +45,12 @@ const logout = async function (Token) {
 /*
 * Edit User
 * */
-const userEdit = async function (ID, body) {
+const userEdit = async function (ID, Token, body) {
     return await fetcher(`/user/` + ID, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Authorization": Token || null,
         },
         body: JSON.stringify(body),
     });

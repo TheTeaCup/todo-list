@@ -1,7 +1,20 @@
 import {useState} from "react";
 import {useRouter} from "next/router";
 import Head from "next/head";
-import {Button, Flex, FormControl, Heading, Input, Stack, Text, useColorModeValue} from "@chakra-ui/react";
+import {
+    Button,
+    Flex,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Heading,
+    Input,
+    InputGroup,
+    InputRightElement,
+    Stack,
+    Text,
+    useColorModeValue
+} from "@chakra-ui/react";
 import {motion, useAnimation} from 'framer-motion'
 import ThemeSwitcher from "@/components/themeSwitcher";
 import {login, register} from "@/utils/api";
@@ -108,6 +121,8 @@ export default function Home() {
         setError(null);
     }
 
+    const [show, setShow] = useState(false);
+    const handleClick = () => setShow(!show);
 
     return (
         <>
@@ -166,6 +181,9 @@ export default function Home() {
                                     </center>
 
                                     <FormControl id="email">
+                                        <FormLabel htmlFor="email" fontWeight={'normal'}>
+                                            Email
+                                        </FormLabel>
                                         <Input
                                             placeholder="your-email@example.com"
                                             _placeholder={{color: 'gray.500'}}
@@ -176,6 +194,9 @@ export default function Home() {
                                     </FormControl>
 
                                     <FormControl display={step === 'create' ? '' : 'none'} id="username">
+                                        <FormLabel htmlFor="username" fontWeight={'normal'}>
+                                            Username
+                                        </FormLabel>
                                         <Input
                                             placeholder="CoolUsername"
                                             _placeholder={{color: 'gray.500'}}
@@ -186,23 +207,34 @@ export default function Home() {
                                     </FormControl>
 
                                     <FormControl id="password">
-                                        <Input
-                                            placeholder="P@ssw!rd123"
-                                            _placeholder={{color: 'gray.500'}}
-                                            id={'password'}
-                                            required={true}
-                                            type={'password'}
-                                        />
+                                        <FormLabel htmlFor="password" fontWeight={'normal'}>
+                                            Password
+                                        </FormLabel>
+                                        <InputGroup >
+                                            <Input
+                                                placeholder="P@ssw!rd123"
+                                                _placeholder={{color: 'gray.500'}}
+                                                id={'password'}
+                                                required={true}
+                                                type={show ? 'text' : 'password'}
+                                            />
+                                            <InputRightElement width="4.5rem">
+                                                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                                                    {show ? 'Hide' : 'Show'}
+                                                </Button>
+                                            </InputRightElement>
+                                        </InputGroup>
                                     </FormControl>
 
                                     <FormControl display={step === 'create' ? '' : 'none'} id="passwordVerify">
                                         <Input
-                                            placeholder="passwordVerify"
+                                            placeholder="P@ssw!rd123"
                                             _placeholder={{color: 'gray.500'}}
                                             id={'passwordVerify'}
                                             required={step === 'create'}
                                             type={'password'}
                                         />
+                                        <FormHelperText>Please re-enter your password for verification.</FormHelperText>
                                     </FormControl>
 
                                     <Stack spacing={6}>

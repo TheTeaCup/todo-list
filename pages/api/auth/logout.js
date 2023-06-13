@@ -4,6 +4,10 @@ import {sessionOptions} from "@/utils/sessionSettings";
 export default withIronSessionApiRoute(logoutRoute, sessionOptions);
 
 async function logoutRoute(req, res) {
-    req.session.destroy();
-    res.json({user: null});
+    if (req.method === 'POST') {
+        req.session.destroy();
+        res.json({error: false, user: null});
+    } else {
+        res.json({error: true, message: "Method not allowed"});
+    }
 }

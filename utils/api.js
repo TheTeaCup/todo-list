@@ -34,7 +34,7 @@ const register = async function (body) {
 * */
 const logout = async function (Token) {
     return await fetcher(`/auth/logout`, {
-        method: "GET",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             "Authorization": Token || null,

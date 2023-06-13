@@ -12,11 +12,14 @@ export default function App_Logout({user, dataProps}) {
     useEffect(() => {
         (async () => {
             try {
-                await api.logout(user.token);
+                let res = await api.logout(user.token);
+                if(!res.user) {
+                    router.push('/');
+                } else router.reload()
             } catch (e) {
                 console.log(e)
             }
-            router.push('/');
+
         })()
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
     return (

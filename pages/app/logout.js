@@ -4,8 +4,9 @@ import {sessionOptions} from "@/utils/sessionSettings";
 import {withIronSessionSsr} from "iron-session/next";
 import Navbar from "@/components/navbar";
 import {useEffect} from "react";
-import * as api from "@/utils/api";
 import {useRouter} from "next/router";
+import {Box, Spinner, Stack} from "@chakra-ui/react";
+import * as api from "@/utils/api";
 
 export default function App_Logout({user, dataProps}) {
     const router = useRouter();
@@ -13,7 +14,7 @@ export default function App_Logout({user, dataProps}) {
         (async () => {
             try {
                 let res = await api.logout(user.token);
-                if(!res.user) {
+                if (!res.user) {
                     router.push('/');
                 } else router.reload()
             } catch (e) {
@@ -28,7 +29,13 @@ export default function App_Logout({user, dataProps}) {
                 <title>ToDo App</title>
             </Head>
 
-            <Navbar user={user}/>
+            <Navbar user={user}>
+                <Box pt={5} min={'100vh'}>
+                    <Stack p={5} alignItems={'center'}>
+                        <Spinner pt={5} size='xl'/>
+                    </Stack>
+                </Box>
+            </Navbar>
 
         </>
     )

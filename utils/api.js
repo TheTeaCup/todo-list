@@ -42,4 +42,17 @@ const logout = async function (Token) {
     });
 }
 
-export {fetcher, login, register, logout};
+/*
+* Edit User
+* */
+const userEdit = async function (ID, body) {
+    return await fetcher(`/user/` + ID, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+};
+
+export {fetcher, login, register, logout, userEdit};

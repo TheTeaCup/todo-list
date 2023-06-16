@@ -1,4 +1,3 @@
-import Head from "next/head";
 import csrf from "@/utils/csrf";
 import {sessionOptions} from "@/utils/sessionSettings";
 import {withIronSessionSsr} from "iron-session/next";

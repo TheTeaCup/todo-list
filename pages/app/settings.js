@@ -66,9 +66,6 @@ export default function Home({user, dataProps}) {
 
     return (
         <>
-            <Head>
-                <title>ToDo App</title>
-            </Head>
 
             <Navbar user={user}>
                 <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>

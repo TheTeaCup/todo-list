@@ -126,9 +126,7 @@ export default function Home() {
 
     return (
         <>
-            <Head>
-                <title>Todo App - Login</title>
-            </Head>
+
 
             <motion.div
                 animate={loadingAnimationControl}>

@@ -25,9 +25,7 @@ export default function App_Logout({user, dataProps}) {
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
     return (
         <>
-            <Head>
-                <title>ToDo App</title>
-            </Head>
+
 
             <Navbar user={user}>
                 <Box pt={5} min={'100vh'}>

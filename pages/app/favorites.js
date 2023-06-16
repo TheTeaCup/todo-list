@@ -8,9 +8,7 @@ export default function Home({user, dataProps}) {
     console.log(user)
     return (
         <>
-            <Head>
-                <title>ToDo App</title>
-            </Head>
+
 
             <Navbar user={user}/>
 

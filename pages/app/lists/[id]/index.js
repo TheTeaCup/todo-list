@@ -7,9 +7,7 @@ import Navbar from "@/components/navbar";
 export default function Home({user, dataProps}) {
     return (
         <>
-            <Head>
-                <title>ToDo App</title>
-            </Head>
+
 
             <Navbar user={user}/>
 

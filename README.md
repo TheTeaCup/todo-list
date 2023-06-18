@@ -20,3 +20,10 @@ Try the tool: [ToDo List App](https://todo.hunterwilson.dev)
 
 ## 🛠️ Installation Steps
 * coming soon
+
+
+## 💻 Built with
+
+- [NextJS](https://nextjs.org/)
+- [Chakra Ui](https://chakra-ui.com/): for styling
+

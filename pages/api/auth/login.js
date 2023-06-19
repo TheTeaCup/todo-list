@@ -19,7 +19,7 @@ async function authLogin(req, res) {
             encrypted += cipher.final('base64');
 
             let user = await Redis.get('user-' + encrypted);
-            console.log(user)
+
             if (user) {
                 user = JSON.parse(user);
 
